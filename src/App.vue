@@ -4,14 +4,14 @@
       <button
         @click="isAdmin = true"
         class="font-bold"
-        :class="{ 'text-red-500': isAdmin == true }"
+        :class="{ 'text-red-500': isAdmin, 'hover:text-red-200': !isAdmin }"
       >
         ADMIN
       </button>
       <button
         @click="isAdmin = false"
         class="font-bold"
-        :class="{ 'text-red-500': isAdmin != true }"
+        :class="{ 'text-red-500': !isAdmin, 'hover:text-red-200': isAdmin }"
       >
         USER
       </button>
@@ -19,7 +19,8 @@
 
     <h1 class="font-bold mb-5 text-2xl">MY PORTFOLIO</h1>
     <admin-view v-if="isAdmin" @createProject="addProject" />
-    <user-view v-else @createProject="addProject" />
+    <user-view v-else @createProject="addProject" :allProjects="allProjects" />
+    <!--enviar props allprojects-->
   </div>
 </template>
 
@@ -30,8 +31,8 @@ import UserView from "./components/UserView.vue";
 export default {
   name: "App",
   components: {
-    userView: UserView,
-    adminView: AdminView,
+    UserView,
+    AdminView,
   },
   data() {
     return {
@@ -41,7 +42,9 @@ export default {
   },
   methods: {
     addProject(project) {
+      //project es el objeto que viene del emit createProject (AdminVue)
       this.allProjects.push(project);
+      //console.log(this.allProjects); se está enviando vía emit
     },
   },
 };

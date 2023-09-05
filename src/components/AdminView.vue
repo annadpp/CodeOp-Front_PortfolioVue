@@ -13,7 +13,7 @@
       <div class="flex flex-col my-5">
         Project Description <input v-model="description" class="border" />
       </div>
-      <button @click="handleSubmit" class="border w-20 self-center">
+      <button @click.prevent="handleSubmit" class="border w-20 self-center">
         SUBMIT
       </button>
     </form>
@@ -22,6 +22,7 @@
 
 <script>
 export default {
+  emits: ["createProject"],
   name: "AdminView",
   data() {
     return {
@@ -33,6 +34,7 @@ export default {
   methods: {
     handleSubmit() {
       this.$emit("createProject", {
+        //queremos recoger info, pasarla al padre (App) y de allí a UserView (hermano)
         title: this.title,
         image: this.image,
         description: this.description,
