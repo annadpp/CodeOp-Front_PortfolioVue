@@ -1,22 +1,37 @@
 <template>
-  <div>
-    <h2 class="text-center font-semibold mb-5">ADD NEW PROJECT</h2>
-    <form class="flex flex-col justify-center" action="">
+  <h2 class="text-center font-semibold mb-5">ADD NEW PROJECT</h2>
+  <div class="w-1/2">
+    <form
+      class="flex flex-col justify-center w-full"
+      action=""
+      :class="{ 'opacity-20': submitted }"
+    >
       <div class="flex gap-x-5">
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           Project Title <input v-model="title" class="border" />
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           Image URL <input v-model="image" class="border" />
         </div>
       </div>
       <div class="flex flex-col my-5">
         Project Description <input v-model="description" class="border" />
       </div>
-      <button @click.prevent="handleSubmit" class="border w-20 self-center">
+      <button
+        @click.prevent="handleSubmit"
+        class="border w-20 self-center mb-3"
+      >
         SUBMIT
       </button>
     </form>
+
+    <div
+      v-if="submitted"
+      class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/3 h-[150px] bg-blue-400 flex flex-col justify-center items-center"
+    >
+      <p>New project "{{ this.title }}" submitted!</p>
+      <button @click="submitted = false">Cerrar</button>
+    </div>
   </div>
 </template>
 
@@ -29,6 +44,7 @@ export default {
       title: "",
       image: "",
       description: "",
+      submitted: false,
     };
   },
   methods: {
@@ -39,6 +55,7 @@ export default {
         image: this.image,
         description: this.description,
       });
+      this.submitted = true;
     },
   },
 };
