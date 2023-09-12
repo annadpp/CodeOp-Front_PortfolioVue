@@ -1,19 +1,30 @@
 <template>
   <div class="w-1/2">
-    <Transition>
-      <div v-if="isOpen" class="flex gap-x-4 w-full">
-        <div class="w-full mb-5">
-          <img :src="selectedProject.image" alt="" />
-        </div>
+    <div v-if="this.allProjects.length > 0" class="flex gap-x-4 w-full">
+      <div class="w-full mb-5">
+        <img :src="selectedProject.image" alt="" />
+      </div>
 
-        <div class="w-full">
-          <button @click="isOpen = false">Cerrar</button>
-          <h3>{{ selectedProject.title }}</h3>
-          <p>{{ selectedProject.description }}</p>
-        </div>
-      </div></Transition
-    >
-    <div class="grid grid-cols-4 gap-x-4">
+      <div class="w-full">
+        <h3>{{ selectedProject.title }}</h3>
+        <p>{{ selectedProject.description }}</p>
+      </div>
+    </div>
+
+    <div v-else class="flex gap-x-4 w-full">
+      <div class="w-full mb-5">
+        <img
+          src="https://i.pinimg.com/564x/9f/8f/4c/9f8f4c2165f1df967864ee3de4d3b6ea.jpg"
+          alt=""
+        />
+      </div>
+
+      <div class="w-full">
+        <h3>No hay proyectos que mostrar</h3>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4">
       <div v-for="(project, i) in allProjects" :key="i">
         <img
           :src="project.image"
@@ -25,6 +36,14 @@
       </div>
     </div>
   </div>
+
+  <button
+    v-if="this.allProjects.length > 0"
+    @click="deleteAll"
+    class="btn btn-danger"
+  >
+    Borrar todos
+  </button>
 </template>
 
 <script>
@@ -33,18 +52,20 @@ export default {
   props: ["allProjects"],
   data() {
     return {
-      isOpen: false,
-      selectedProject: null, // Guarda info de cada proyecto
+      isOpen: true,
+      selectedProject: this.allProjects[0],
+      proj: true,
     };
   },
   methods: {
     openImg(i) {
-      this.isOpen = true;
-      this.selectedProject = this.allProjects[i]; // Guarda info de cada proyecto
+      this.selectedProject = this.allProjects[i];
     },
     deleteImg(i) {
       this.allProjects.splice(i, 1);
-      this.isOpen = false;
+    },
+    deleteAll() {
+      this.allProjects.splice(0, this.allProjects.length);
     },
   },
 };
