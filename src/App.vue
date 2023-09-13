@@ -1,23 +1,39 @@
 <template>
-  <div class="flex flex-col items-center mt-5">
-    <div class="flex justify-end w-1/2 gap-x-4 mb-5">
-      <button
-        @click="isAdmin = true"
-        class="font-bold"
-        :class="{ 'text-red-500': isAdmin, 'hover:text-red-200': !isAdmin }"
-      >
-        ADMIN
-      </button>
-      <button
-        @click="isAdmin = false"
-        class="font-bold"
-        :class="{ 'text-red-500': !isAdmin, 'hover:text-red-200': isAdmin }"
-      >
-        USER
-      </button>
+  <div class="flex flex-col items-center h-[100vh]">
+    <div
+      class="fixed flex justify-between items-center w-screen border-b-2 border-black pl-8"
+    >
+      <h1 class="font-bold text-2xl hidden sm:block">MY PORTFOLIO.vue</h1>
+      <h1 class="font-bold text-xl leading-4 visible sm:hidden">
+        MY PORT- <br />FOLIO
+      </h1>
+      <div class="flex justify-end">
+        <button
+          @click="isAdmin = true"
+          class="font-bold, w-[75px] md:w-[150px] py-4"
+          :class="{
+            'bg-black': isAdmin,
+            'text-zinc-50': isAdmin,
+            'hover:bg-zinc-700': !isAdmin,
+            'hover:text-zinc-50': !isAdmin,
+          }"
+        >
+          Admin
+        </button>
+        <button
+          @click="isAdmin = false"
+          class="font-bold, w-[75px] md:w-[150px] py-4"
+          :class="{
+            'bg-black': !isAdmin,
+            'text-zinc-50': !isAdmin,
+            'hover:bg-zinc-700': isAdmin,
+            'hover:text-zinc-50': isAdmin,
+          }"
+        >
+          User
+        </button>
+      </div>
     </div>
-
-    <h1 class="font-bold mb-5 text-2xl">MY PORTFOLIO</h1>
 
     <user-view
       v-if="!isAdmin"
@@ -29,12 +45,6 @@
       @createProject="addProject"
       @verProyectos="verProyectos"
     />
-
-    <div>
-      <div id="objeto" @mostrar-objeto="mostrarObjeto" v-if="mostrarDiv">
-        Hola
-      </div>
-    </div>
   </div>
 </template>
 
@@ -68,7 +78,7 @@ export default {
           title: "Mockin'",
           image:
             "https://images.unsplash.com/photo-1641378588520-f30c0c36ef84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZnVubnklMjBjYXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1400&q=60",
-          description: "A cat is mockin' tiy, and you're cryin'.",
+          description: "A cat is mockin' you, and you're cryin'.",
         },
       ],
     };
@@ -87,13 +97,26 @@ export default {
 </script>
 
 <style>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
+html {
+  background-color: rgb(250 250 250);
+  font-family: "Syne";
 }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0.5;
+h2,
+h3 {
+  background: url("../../src/wave.svg");
+  background-repeat: repeat-x;
+  background-size: 15px 10px;
+  animation: move 25s linear infinite;
+  -webkit-animation: move 25s linear infinite;
+}
+
+@keyframes move {
+  from {
+    background-position: 2px 19px;
+  }
+  to {
+    background-position: 500px 19px;
+  }
 }
 </style>
