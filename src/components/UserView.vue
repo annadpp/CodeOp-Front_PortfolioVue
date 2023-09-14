@@ -2,7 +2,7 @@
   <div class="w-full">
     <div
       v-if="this.allProjects.length > 0"
-      class="fixed flex flex-col-reverse justify-between sm:flex-row w-full h-[50vh] sm:h-[45vh] mt-[14vh] sm:mt-[15vh] bg-zinc-50 z-50 gap-x-10 px-8 overflow-x-hidden"
+      class="fixed flex flex-col-reverse justify-between sm:flex-row w-full h-[50vh] sm:h-[43vh] mt-[14vh] sm:mt-[15vh] bg-zinc-50 z-50 gap-x-10 px-8 overflow-x-hidden"
     >
       <div class="w-full flex flex-col justify-between text-right mt-5">
         <div class="flex flex-col sm:justify-end sm:h-[12vh] h-[15vh]">
@@ -13,7 +13,7 @@
             {{ selectedProject.description }}
           </p>
         </div>
-        <div class="flex gap-x-5 items-center">
+        <div class="flex gap-x-5 items-center h-[5vh]">
           <div
             v-if="this.allProjects.length > 4"
             @click="deleteAll"
@@ -47,9 +47,9 @@
       >
         <div class="flex items-center justify-center">
           <img
-            src="https://happeningandfriends.com/uploads/happening/products/46/004554/thumbnail/mock_ST_newSadCat.jpg"
+            src="../sadcat.png"
             alt=""
-            class="object-cover w-[70vw] sm:h-[70vw] md:max-w-[60vh] md:min-w-[50vh] md:max-h-[60vh] md:min-h-[50vh]"
+            class="object-cover w-[70vw] sm:h-[70vw] md:max-w-[60vh] md:min-w-[55vh] md:max-h-[60vh] md:min-h-[50vh]"
           />
         </div>
         <div class="flex justify-center items-center w-full mt-8 lg:mt-0">
@@ -66,7 +66,7 @@
 
     <div
       v-if="this.allProjects.length > 0"
-      class="mt-[65vh] sm:mt-[60vh] z-0 pt-[3vh] mb-[3vh] h-[33vh] sm:h-[36vh] overflow-auto px-8 border-t-2 border-black"
+      class="justify-end mt-[68vh] sm:mt-[59vh] z-0 pt-[4.5vh] sm:pt-[4.25vh] sm:mb-[5vh] h-[28vh] sm:h-[36vh] overflow-auto px-8 border-t-2 border-black"
     >
       <div class="grid grid-cols-4 gap-2 sm:gap-5">
         <div v-for="(project, i) in allProjects" :key="i">
@@ -74,7 +74,7 @@
             :src="project.image"
             alt=""
             @click="openImg(i)"
-            class="h-[80px] sm:h-[180px] object-cover w-full cursor-pointer grayscale hover:grayscale-0"
+            class="h-[8vh] sm:h-[19vh] object-cover w-full cursor-pointer grayscale hover:grayscale-0"
           />
           <button
             @click="deleteImg(i)"
@@ -84,9 +84,13 @@
           </button>
         </div>
       </div>
-      <p class="mt-8 sm:mt-10 border-t-2 border-black pt-4 text-center">
-        © Anna de Pablo Puig
-      </p>
+      <div class="flex flex-col justify-end h-[10.5vh] sm:h-[9vh]">
+        <p
+          class="mt-[3.5vh] sm:mt-[5vh] border-t-2 border-black pt-4 text-center"
+        >
+          © Anna de Pablo Puig
+        </p>
+      </div>
     </div>
   </div>
 </template>

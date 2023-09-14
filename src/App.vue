@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center h-[100vh]">
     <div
-      class="fixed flex justify-between items-center w-screen border-b-2 border-black pl-8"
+      class="bg-zinc-50 fixed flex justify-between items-center w-screen border-b-2 border-black pl-8"
     >
       <h1 class="font-bold text-2xl hidden sm:block">MY PORTFOLIO.vue</h1>
       <h1 class="font-bold text-xl leading-4 visible sm:hidden">
